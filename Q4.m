@@ -5,12 +5,13 @@ tau = R*C;
 Vp = 1;%volts
 t = 0:0.005:1;
 
-y = zeros(size(t)); % Preallocating enough memory for y
+yp1RC = zeros(size(t)); % Preallocating enough memory for y
 region1 = (t>=0)&(t< t0); % First interval
-y(region1) = Vp * (1 - exp(-t(region1)/tau));
+yp1RC(region1) = Vp * (1 - exp(-t(region1)/tau));
 region2 = (t>=t0)&(t<=1);
-y(region2) = Vp * (1 - exp(-t0/tau)) * exp(-(t(region2) - t0)/tau);
-
-plot(t,y);
+yp1RC(region2) = Vp * (1 - exp(-t0/tau)) * exp(-(t(region2) - t0)/tau);
+figure(1);
+plot(t,yp1RC);
 xlabel('t');
-ylabel('Vc');
+ylabel('yp1RC');
+title('Q4');
